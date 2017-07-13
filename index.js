@@ -4,6 +4,7 @@ var inherits = require('util').inherits;
 
 var EveService, CustomCharacteristic = {};
 var klimaService;
+var AirPressure;
 
 
 module.exports = function(homebridge) {
@@ -92,7 +93,6 @@ function EVETempHumPres(log, config) {
     {
         // message is Buffer
         if (topic == that.topic) {
-            that.log(that.name + " - New Message");
             data = JSON.parse(message);
 
             if (data === null) {return null}
@@ -101,7 +101,7 @@ function EVETempHumPres(log, config) {
             that.humidity = parseInt(data.humidity)
             that.pressure = parseInt(data.pressure)
 
-			that.log("Temperature: " + that.temperature + "; Humidity: " + that.humidity);
+			that.log("Temperature: " + that.temperature + "; Humidity: " + that.humidity + "; Pressure: " + that.pressure);
             that.klimaService.setCharacteristic(Characteristic.CurrentTemperature, that.temperature);
             that.klimaService.setCharacteristic(Characteristic.CurrentRelativeHumidity, that.humidity);
             that.klimaService.setCharacteristic(CustomCharacteristic.AirPressure, that.pressure);
