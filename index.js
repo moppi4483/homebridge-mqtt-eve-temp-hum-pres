@@ -2,7 +2,8 @@ var Service, Characteristic;
 var mqtt    = require('mqtt');
 var inherits = require('util').inherits;
 
-var EveService, CustomCharacteristic = {};
+var EveService = {};
+var CustomCharacteristic = {};
 var klimaService;
 var AirPressure;
 
